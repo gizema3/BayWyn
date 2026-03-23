@@ -1,6 +1,10 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using BayWyn.View;
+using System;
+using System.Collections.Generic;
+
 
 namespace BayWyn
 {
@@ -9,6 +13,8 @@ namespace BayWyn
     /// </summary>
     public partial class App : Application
     {
+        
+        
     }
 
 }

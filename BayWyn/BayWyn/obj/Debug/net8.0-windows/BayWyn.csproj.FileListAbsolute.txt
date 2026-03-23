@@ -21,3 +21,4 @@ C:\Users\akbul\OneDrive\Documents\GitHub\BayWyn\BayWyn\BayWyn\obj\Debug\net8.0-w
 C:\Users\akbul\OneDrive\Documents\GitHub\BayWyn\BayWyn\BayWyn\obj\Debug\net8.0-windows\BayWyn.pdb
 C:\Users\akbul\OneDrive\Documents\GitHub\BayWyn\BayWyn\BayWyn\obj\Debug\net8.0-windows\BayWyn.genruntimeconfig.cache
 C:\Users\akbul\OneDrive\Documents\GitHub\BayWyn\BayWyn\BayWyn\obj\Debug\net8.0-windows\ref\BayWyn.dll
+C:\Users\akbul\OneDrive\Documents\GitHub\BayWyn\BayWyn\BayWyn\obj\Debug\net8.0-windows\Controls\BindablePasswordBox.g.cs

@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BayWyn.View;
 
 namespace BayWyn
 {
@@ -19,6 +20,32 @@ namespace BayWyn
         public MainWindow()
         {
             InitializeComponent();
+            if (role == "Manager")
+            {
+                btnDelivery.Visibility = Visibility.Visible;
+                btnCourier.Visibility = Visibility.Visible;
+                btnReports.Visibility = Visibility.Visible;
+            }
+
+            if (role == "Admin")
+            {
+                btnDelivery.Visibility = Visibility.Visible;
+                btnCourier.Visibility = Visibility.Visible;
+                btnReports.Visibility = Visibility.Visible;
+
+            }
+            if (role == "Logistics Coordinator")
+            {
+                btnDelivery.Visibility = Visibility.Visible;
+                btnCourier.Visibility = Visibility.Visible;
+                btnReports.Visibility = Visibility.Collapsed;
+            }
+            if (role == "Courier")
+            {
+                btnDelivery.Visibility = Visibility.Collapsed;
+                btnCourier.Visibility = Visibility.Visible;
+                btnReports.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
