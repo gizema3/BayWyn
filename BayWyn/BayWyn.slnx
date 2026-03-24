@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="BayWyn.Tests/BayWyn.Tests.csproj" Id="6ccf7a57-fa34-445b-932b-b32596a5287d" />
   <Project Path="BayWyn/BayWyn.csproj" />
 </Solution>

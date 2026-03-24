@@ -1,0 +1,15 @@
+﻿<Project Sdk="MSTest.Sdk/3.10.2">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IsTestApplication>true</IsTestApplication>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BayWyn\BayWyn.csproj" />
+	</ItemGroup>
+
+</Project>
