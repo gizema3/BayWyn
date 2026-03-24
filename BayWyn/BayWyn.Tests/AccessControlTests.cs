@@ -8,7 +8,7 @@ namespace BayWyn.Tests
     public class AccessControlTests
     {
         [TestInitialize]
-        public void Setup()
+        public void Setup() //Resets previous tests
         {
             AuthService.Logout();
         }
@@ -16,7 +16,7 @@ namespace BayWyn.Tests
         
 
         [TestMethod]
-        public void OperationsManager_ShouldViewContractsJobsAndReports()
+        public void OperationsManager_ShouldViewContractsJobsAndReports() //Checks operation manager visibility
         {
             AuthService.Login("Jones", "j1234");
 
@@ -28,7 +28,7 @@ namespace BayWyn.Tests
             Assert.IsTrue(vm.CanViewReports);
         }
         [TestMethod]
-        public void CourierRole_ShouldOnlyViewAssignments()
+        public void CourierRole_ShouldOnlyViewAssignments() //Checks courier visibility
         {
             var loginResult = AuthService.Login("Courier", "c1234");
             Assert.IsTrue(loginResult);

@@ -7,13 +7,13 @@ namespace BayWyn.Tests
     public class AuthServiceTests
     {
         [TestInitialize]
-        public void Setup()
+        public void Setup() //Resets previous login
         {
             AuthService.Logout();
         }
 
         [TestMethod]
-        public void Login_WithValidCredentials_ReturnsTrue()
+        public void Login_WithValidCredentials_ReturnsTrue() //Login with correct details
         {
             var result = AuthService.Login("Jones", "j1234");
 
@@ -23,7 +23,7 @@ namespace BayWyn.Tests
         }
 
         [TestMethod]
-        public void Login_WithInvalidCredentials_ReturnsFalse()
+        public void Login_WithInvalidCredentials_ReturnsFalse() //Login with incorrect details
         {
             var result = AuthService.Login("WrongUser", "WrongPass");
 
