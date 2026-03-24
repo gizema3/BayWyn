@@ -34,7 +34,7 @@ namespace BayWyn.ViewModels
 
         public ObservableCollection<string> Couriers { get; } = new ObservableCollection<string>
         {
-            "courier", "John", "Mike"
+            "courier", "John", "Mike", "Anna"
         };
 
         public CourierJob? SelectedJob

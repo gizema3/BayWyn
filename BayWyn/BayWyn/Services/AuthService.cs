@@ -5,7 +5,7 @@ namespace BayWyn.Services
 {
     public static class AuthService
     {
-        public static UserAccount CurrentUser { get; private set; }
+        public static UserAccount? CurrentUser { get; private set; }
 
         public static bool Login(string username, string password)
         {
