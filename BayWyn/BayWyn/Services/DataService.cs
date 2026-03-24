@@ -12,11 +12,12 @@ namespace BayWyn.Services
             new UserAccount { Username = "Kapoor", Password = "k1234", Role = "A" },
             new UserAccount { Username = "Gavin", Password = "g1234", Role = "LC" },
             new UserAccount { Username = "Courier", Password = "c1234", Role = "C" }
-        };
+        }; //Manually set user accounts for access control.
 
+        //Used observable collection to automatically update.
         public static ObservableCollection<CustomerContract> Contracts { get; } = new ObservableCollection<CustomerContract>
         {
-            new CustomerContract
+            new CustomerContract //creating customer contracts
             {
                 CustomerRecordNumber = 1,
                 BusinessName = "ABC Foods",
@@ -112,6 +113,7 @@ namespace BayWyn.Services
 
         public static ObservableCollection<CourierJob> Jobs { get; } = new ObservableCollection<CourierJob>
         {
+            //Creating list for courier jobs
             new CourierJob { JobId = 1, ClientName = "ABC Foods", IsContractClient = true, DeliveryDate = DateTime.Today, DeliveryTime = "10:00", CourierName = "Courier", Price = 2.50m, Status = "Pending" },
             new CourierJob { JobId = 2, ClientName = "Walk-in Client", IsContractClient = false, DeliveryDate = DateTime.Today, DeliveryTime = "11:15", CourierName = "John", Price = 10.00m, Status = "Pending" },
 

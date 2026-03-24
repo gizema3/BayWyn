@@ -41,7 +41,7 @@
                 <DataGridTextColumn Header="Date" Binding="{Binding DeliveryDate, StringFormat=d}" Width="110"/>
                 <DataGridTextColumn Header="Time" Binding="{Binding DeliveryTime}" Width="80"/>
                 <DataGridTextColumn Header="Courier" Binding="{Binding CourierName}" Width="100"/>
-                <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=C}" Width="80"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=£{0:F2}}" Width="80"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>

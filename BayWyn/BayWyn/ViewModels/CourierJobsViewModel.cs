@@ -18,7 +18,7 @@ namespace BayWyn.ViewModels
         private string _selectedTimeSlot = string.Empty;
         private string _selectedCourier = string.Empty;
 
-        public ObservableCollection<CourierJob> Jobs => DataService.Jobs;
+        public ObservableCollection<CourierJob> Jobs => DataService.Jobs; //linking jobs to DataService
 
         public ObservableCollection<string> TimeSlots { get; } = new ObservableCollection<string>
         {
@@ -30,16 +30,16 @@ namespace BayWyn.ViewModels
             "14:00","14:15","14:30","14:45",
             "15:00","15:15","15:30","15:45",
             "16:00","16:15","16:30"
-        };
+        }; //Delivery times within the combobox.
 
         public ObservableCollection<string> Couriers { get; } = new ObservableCollection<string>
         {
             "courier", "John", "Mike", "Anna"
-        };
+        };//Assignable couriers.
 
         public CourierJob? SelectedJob
         {
-            get => _selectedJob;
+            get => _selectedJob; //Setting up selected jobs (when user click on the job).
             set
             {
                 _selectedJob = value;
@@ -51,7 +51,7 @@ namespace BayWyn.ViewModels
                     IsContractClient = _selectedJob.IsContractClient;
                     DeliveryDate = _selectedJob.DeliveryDate;
                     SelectedTimeSlot = _selectedJob.DeliveryTime;
-                    SelectedCourier = _selectedJob.CourierName;
+                    SelectedCourier = _selectedJob.CourierName; //Updating the form with the chosen job.
                 }
             }
         }
@@ -59,7 +59,7 @@ namespace BayWyn.ViewModels
         public string ClientName
         {
             get => _clientName;
-            set { _clientName = value; OnPropertyChanged(); }
+            set { _clientName = value; OnPropertyChanged(); } //Setting up property changed information.
         }
 
         public bool IsContractClient
@@ -86,20 +86,20 @@ namespace BayWyn.ViewModels
             set { _selectedCourier = value; OnPropertyChanged(); }
         }
 
-        public ICommand AddJobCommand { get; }
+        public ICommand AddJobCommand { get; } 
         public ICommand UpdateJobCommand { get; }
         public ICommand CancelJobCommand { get; }
 
-        public CourierJobsViewModel()
+        public CourierJobsViewModel() //Setting up job options.
         {
-            AddJobCommand = new RelayCommand(_ => AddJob());
+            AddJobCommand = new RelayCommand(_ => AddJob()); //Calling relaycommand methods.
             UpdateJobCommand = new RelayCommand(_ => UpdateJob());
             CancelJobCommand = new RelayCommand(_ => CancelJob());
         }
 
-        private bool Validate()
+        private bool Validate() //User input validation.
         {
-            if (string.IsNullOrWhiteSpace(ClientName))
+            if (string.IsNullOrWhiteSpace(ClientName)) //Client name validation.
             {
                 MessageBox.Show("Client name is required.");
                 return false;
@@ -112,13 +112,13 @@ namespace BayWyn.ViewModels
             }
 
             if (SelectedTimeSlot == "12:00" || SelectedTimeSlot == "12:15" ||
-                SelectedTimeSlot == "12:30" || SelectedTimeSlot == "12:45")
+                SelectedTimeSlot == "12:30" || SelectedTimeSlot == "12:45") //Blocks of timeslots.
             {
                 MessageBox.Show("No deliveries can be scheduled during lunch break (12:00-13:00).");
                 return false;
             }
 
-            bool hasConflict = Jobs.Any(j =>
+            bool hasConflict = Jobs.Any(j => //Verification for not assigning same courier 2 jobs at the same time.
                 j != SelectedJob &&
                 j.CourierName == SelectedCourier &&
                 j.DeliveryDate.Date == DeliveryDate.Date &&
@@ -133,19 +133,19 @@ namespace BayWyn.ViewModels
 
             if (DeliveryDate.DayOfWeek == DayOfWeek.Sunday)
             {
-                MessageBox.Show("Deliveries cannot be scheduled on Sundays.");
+                MessageBox.Show("Deliveries cannot be scheduled on Sundays."); //Blocking off Sunday deliveries.
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(SelectedTimeSlot))
             {
-                MessageBox.Show("Please select a time slot.");
+                MessageBox.Show("Please select a time slot."); //Timeslot validation.
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(SelectedCourier))
             {
-                MessageBox.Show("Please select a courier.");
+                MessageBox.Show("Please select a courier."); //Courier validation.
                 return false;
             }
 
@@ -157,7 +157,8 @@ namespace BayWyn.ViewModels
         {
             if (!Validate()) return;
 
-            int nextId = Jobs.Any() ? Jobs.Max(j => j.JobId) + 1 : 1;
+            int nextId = Jobs.Any() ? Jobs.Max(j => j.JobId) + 1 : 1; //Assigning multiple jobs.
+            //If courier already has a job adds 1 to jobID.
 
             Jobs.Add(new CourierJob
             {
@@ -167,7 +168,7 @@ namespace BayWyn.ViewModels
                 DeliveryDate = DeliveryDate,
                 DeliveryTime = SelectedTimeSlot,
                 CourierName = SelectedCourier,
-                Price = IsContractClient ? 2.50m : 10m,
+                Price = IsContractClient ? 2.50m : 10m, //Applying price rules.
                 Status = "Pending"
             });
 
@@ -183,6 +184,7 @@ namespace BayWyn.ViewModels
             }
 
             if (!Validate()) return;
+            // Updating selected job.
 
             SelectedJob.ClientName = ClientName;
             SelectedJob.IsContractClient = IsContractClient;
@@ -191,7 +193,7 @@ namespace BayWyn.ViewModels
             SelectedJob.CourierName = SelectedCourier;
             SelectedJob.Price = IsContractClient ? 2.50m : 10m;
 
-            OnPropertyChanged(nameof(Jobs));
+            OnPropertyChanged(nameof(Jobs)); //Update UI
             ClearForm();
         }
 
@@ -203,12 +205,12 @@ namespace BayWyn.ViewModels
                 return;
             }
 
-            SelectedJob.Status = "Cancelled";
+            SelectedJob.Status = "Cancelled"; //Updating status to cancelled.
             OnPropertyChanged(nameof(Jobs));
             ClearForm();
         }
 
-        private void ClearForm()
+        private void ClearForm() //When it's done returns the form to default mode.
         {
             SelectedJob = null;
             ClientName = string.Empty;
