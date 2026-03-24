@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\akbul\OneDrive\Documents\GitHub\BayWyn\BayWyn\BayWyn\App.xaml
-41688876628
+51430604239
 
-192020531035
+221025129801
 198185795992
-MainWindow.xaml;Views\CourierJobsView.xaml;Views\LoginView.xaml;Views\MyAssignmentsView.xaml;
+MainWindow.xaml;Views\CourierJobsView.xaml;Views\CustomerContractsView.xaml;Views\LoginView.xaml;Views\MyAssignmentsView.xaml;
 
 False
 
