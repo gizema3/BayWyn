@@ -1,27 +1,33 @@
-﻿using BayWyn.Commands;
-using BayWyn.Models;
-using BayWyn.Services;
-using BayWyn.ViewModels;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using BayWyn.Commands;
+using BayWyn.Models;
+using BayWyn.Services;
 
 namespace BayWyn.ViewModels
 {
     public class CustomerContractsViewModel : BaseViewModel
     {
-        private CustomerContract _selectedContract;
+        private CustomerContract? _selectedContract;
+
+        private string _businessName = string.Empty;
+        private string _address = string.Empty;
+        private string _phoneNumber = string.Empty;
+        private string _email = string.Empty;
+        private string _notes = string.Empty;
 
         public ObservableCollection<CustomerContract> Contracts => DataService.Contracts;
 
-        public CustomerContract SelectedContract
+        public CustomerContract? SelectedContract
         {
             get => _selectedContract;
             set
             {
                 _selectedContract = value;
                 OnPropertyChanged();
+
                 if (_selectedContract != null)
                 {
                     BusinessName = _selectedContract.BusinessName;
@@ -33,11 +39,35 @@ namespace BayWyn.ViewModels
             }
         }
 
-        private string _businessName; public string BusinessName { get => _businessName; set { _businessName = value; OnPropertyChanged(); } }
-        private string _address; public string Address { get => _address; set { _address = value; OnPropertyChanged(); } }
-        private string _phoneNumber; public string PhoneNumber { get => _phoneNumber; set { _phoneNumber = value; OnPropertyChanged(); } }
-        private string _email; public string Email { get => _email; set { _email = value; OnPropertyChanged(); } }
-        private string _notes; public string Notes { get => _notes; set { _notes = value; OnPropertyChanged(); } }
+        public string BusinessName
+        {
+            get => _businessName;
+            set { _businessName = value; OnPropertyChanged(); }
+        }
+
+        public string Address
+        {
+            get => _address;
+            set { _address = value; OnPropertyChanged(); }
+        }
+
+        public string PhoneNumber
+        {
+            get => _phoneNumber;
+            set { _phoneNumber = value; OnPropertyChanged(); }
+        }
+
+        public string Email
+        {
+            get => _email;
+            set { _email = value; OnPropertyChanged(); }
+        }
+
+        public string Notes
+        {
+            get => _notes;
+            set { _notes = value; OnPropertyChanged(); }
+        }
 
         public ICommand AddContractCommand { get; }
         public ICommand UpdateContractCommand { get; }
@@ -92,7 +122,11 @@ namespace BayWyn.ViewModels
         private void ClearForm()
         {
             SelectedContract = null;
-            BusinessName = Address = PhoneNumber = Email = Notes = string.Empty;
+            BusinessName = string.Empty;
+            Address = string.Empty;
+            PhoneNumber = string.Empty;
+            Email = string.Empty;
+            Notes = string.Empty;
         }
     }
 }

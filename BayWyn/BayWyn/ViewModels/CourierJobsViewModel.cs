@@ -105,6 +105,32 @@ namespace BayWyn.ViewModels
                 return false;
             }
 
+            if (DeliveryDate.Date < DateTime.Today) //Lunch break validation
+            {
+                MessageBox.Show("Delivery date cannot be in the past.");
+                return false;
+            }
+
+            if (SelectedTimeSlot == "12:00" || SelectedTimeSlot == "12:15" ||
+                SelectedTimeSlot == "12:30" || SelectedTimeSlot == "12:45")
+            {
+                MessageBox.Show("No deliveries can be scheduled during lunch break (12:00-13:00).");
+                return false;
+            }
+
+            bool hasConflict = Jobs.Any(j =>
+                j != SelectedJob &&
+                j.CourierName == SelectedCourier &&
+                j.DeliveryDate.Date == DeliveryDate.Date &&
+                j.DeliveryTime == SelectedTimeSlot &&
+                j.Status != "Cancelled");
+
+            if (hasConflict)
+            {
+                MessageBox.Show("This courier already has a job at that time.");
+                return false;
+            }
+
             if (DeliveryDate.DayOfWeek == DayOfWeek.Sunday)
             {
                 MessageBox.Show("Deliveries cannot be scheduled on Sundays.");
@@ -124,6 +150,7 @@ namespace BayWyn.ViewModels
             }
 
             return true;
+
         }
 
         private void AddJob()

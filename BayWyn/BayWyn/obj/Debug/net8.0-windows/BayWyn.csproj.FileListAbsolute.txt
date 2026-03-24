@@ -30,3 +30,5 @@ C:\Users\akbul\OneDrive\Documents\GitHub\BayWyn\BayWyn\BayWyn\obj\Debug\net8.0-w
 C:\Users\akbul\OneDrive\Documents\GitHub\BayWyn\BayWyn\BayWyn\obj\Debug\net8.0-windows\Views\MyAssignmentsView.g.cs
 C:\Users\akbul\OneDrive\Documents\GitHub\BayWyn\BayWyn\BayWyn\obj\Debug\net8.0-windows\Views\ReportsView.g.cs
 C:\Users\akbul\OneDrive\Documents\GitHub\BayWyn\BayWyn\BayWyn\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\akbul\OneDrive\Documents\GitHub\BayWyn\BayWyn\BayWyn\obj\Debug\net8.0-windows\Styles\Styles.baml
+C:\Users\akbul\OneDrive\Documents\GitHub\BayWyn\BayWyn\BayWyn\obj\Debug\net8.0-windows\App.baml
