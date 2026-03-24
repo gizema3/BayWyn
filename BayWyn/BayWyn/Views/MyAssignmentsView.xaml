@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="BayWyn.Views.MyAssignmentsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="My Assignments" FontSize="20" FontWeight="Bold" Margin="0,0,0,15"/>
+
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Button Content="Accept Assignment" Width="150" Height="35" Margin="0,0,10,0"
+                        Command="{Binding AcceptCommand}"/>
+                <Button Content="Mark Delivered" Width="150" Height="35"
+                        Command="{Binding DeliverCommand}"/>
+            </StackPanel>
+
+            <DataGrid AutoGenerateColumns="False"
+                      ItemsSource="{Binding MyJobs}"
+                      SelectedItem="{Binding SelectedJob, Mode=TwoWay}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding JobId}" Width="60"/>
+                    <DataGridTextColumn Header="Client" Binding="{Binding ClientName}" Width="160"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding DeliveryDate, StringFormat=d}" Width="110"/>
+                    <DataGridTextColumn Header="Time" Binding="{Binding DeliveryTime}" Width="80"/>
+                    <DataGridTextColumn Header="Courier" Binding="{Binding CourierName}" Width="100"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>
