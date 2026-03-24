@@ -1,51 +1,105 @@
 ﻿<UserControl x:Class="BayWyn.Views.CustomerContractsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Grid Margin="10">
+    <Grid Margin="24">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="360"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Margin="0,0,0,15">
-            <TextBlock Text="Customer Contracts" FontSize="20" FontWeight="Bold" Margin="0,0,0,15"/>
-
-            <Label Content="Business Name"/>
-            <TextBox Height="30" Text="{Binding BusinessName, UpdateSourceTrigger=PropertyChanged}"/>
-
-            <Label Content="Address"/>
-            <TextBox Height="30" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}"/>
-
-            <Label Content="Phone Number"/>
-            <TextBox Height="30" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
-
-            <Label Content="Email"/>
-            <TextBox Height="30" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
-
-            <Label Content="Notes"/>
-            <TextBox Height="30" Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}"/>
-
-            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                <Button Content="Create Contract" Width="140" Height="35" Margin="0,0,10,0"
-                        Command="{Binding AddContractCommand}"/>
-                <Button Content="Update Contract" Width="140" Height="35"
-                        Command="{Binding UpdateContractCommand}"/>
+        <Grid Grid.ColumnSpan="3" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="Customer Contracts" Style="{StaticResource SectionTitleText}" FontSize="24"/>
+                
             </StackPanel>
-        </StackPanel>
+        </Grid>
 
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False"
-                  ItemsSource="{Binding Contracts}"
-                  SelectedItem="{Binding SelectedContract, Mode=TwoWay}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding CustomerRecordNumber}" Width="60"/>
-                <DataGridTextColumn Header="Business" Binding="{Binding BusinessName}" Width="150"/>
-                <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="180"/>
-                <DataGridTextColumn Header="Phone" Binding="{Binding PhoneNumber}" Width="110"/>
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="160"/>
-                <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="150"/>
-                <DataGridTextColumn Header="Monthly" Binding="{Binding MonthlyContractCost}" Width="80"/>
-                <DataGridTextColumn Header="Run Cost" Binding="{Binding CourierRunCost}" Width="80"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource CardBorderStyle}">
+            <StackPanel> <!-- Form input attributes-->
+                <TextBlock Text="Contract Details" Style="{StaticResource SectionTitleText}"/>
+                <TextBlock Text="Select a contract from the table to edit it, or create new one."
+                           Margin="0,6,0,0"
+                           Style="{StaticResource BodyMutedText}"/>
+
+                <StackPanel Margin="0,22,0,0">
+                    <TextBlock Text="Business Name" Style="{StaticResource LabelTextStyle}"/>
+                    <TextBox Text="{Binding BusinessName, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,16,0,0">
+                    <TextBlock Text="Address" Style="{StaticResource LabelTextStyle}"/>
+                    <TextBox Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,16,0,0">
+                    <TextBlock Text="Phone Number" Style="{StaticResource LabelTextStyle}"/>
+                    <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,16,0,0">
+                    <TextBlock Text="Email" Style="{StaticResource LabelTextStyle}"/>
+                    <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,16,0,0">
+                    <TextBlock Text="Notes" Style="{StaticResource LabelTextStyle}"/>
+                    <TextBox Height="78"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             VerticalContentAlignment="Top"
+                             Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <Grid Margin="0,22,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="12"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Content="Create Contract" Style="{StaticResource PrimaryButton}" Command="{Binding AddContractCommand}"/>
+                    <Button Grid.Column="2" Content="Update Contract" Style="{StaticResource SecondaryButton}" Command="{Binding UpdateContractCommand}"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="2" Style="{StaticResource CardBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Margin="0,0,0,14">
+                    <TextBlock Text="Active Contracts" Style="{StaticResource SectionTitleText}"/>
+                    <TextBlock Text="Click to select contract."
+                               Margin="0,6,0,0"
+                               Style="{StaticResource BodyMutedText}"/>
+                </StackPanel>
+
+                <DataGrid Grid.Row="1"
+                          AutoGenerateColumns="False"
+                          ItemsSource="{Binding Contracts}"
+                          SelectedItem="{Binding SelectedContract, Mode=TwoWay}">
+                    <DataGrid.Columns> <!-- Data display-->
+                        <DataGridTextColumn Header="ID" Binding="{Binding CustomerRecordNumber}" Width="60"/>
+                        <DataGridTextColumn Header="Business" Binding="{Binding BusinessName}" Width="170"/>
+                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="180"/>
+                        <DataGridTextColumn Header="Phone" Binding="{Binding PhoneNumber}" Width="130"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="180"/>
+                        <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="170"/>
+                        <DataGridTextColumn Header="Monthly" Binding="{Binding MonthlyContractCost, StringFormat=£{0:F2}}" Width="90"/>
+                        <DataGridTextColumn Header="Run Cost" Binding="{Binding CourierRunCost, StringFormat=£{0:F2}}" Width="90"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

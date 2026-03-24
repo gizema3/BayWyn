@@ -1,30 +1,107 @@
 ﻿<Window x:Class="BayWyn.Views.LoginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Login" Height="320" Width="420"
+        Title="BayWyn Login"
+        Height="620"
+        Width="1040"
+        MinHeight="560"
+        MinWidth="920"
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
-    <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition Width="0.9*"/>
+        </Grid.ColumnDefinitions>
+<!--Sidebar-->
+        <Border Background="#0F172A">
+            <Grid Margin="46">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <TextBlock Text="BayWyn Couriers Login" FontSize="22" FontWeight="Bold" Margin="0,0,0,20"/>
+                <StackPanel>
+                    <TextBlock Text="BayWyn" FontSize="34" FontWeight="Bold" Foreground="White"/>
+                    
+                </StackPanel>
 
-        <TextBlock Grid.Row="1" Text="Username"/>
-        <TextBox Grid.Row="1" Margin="0,25,0,10" Height="30"
-                 Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
+                <StackPanel Grid.Row="1" VerticalAlignment="Center" MaxWidth="420">
+                    <TextBlock Text="Courier Management"
+                               FontSize="36"
+                               FontWeight="SemiBold"
+                               Foreground="White"
+                               TextWrapping="Wrap"/>
+                    
 
-        <TextBlock Grid.Row="2" Text="Password"/>
-        <PasswordBox Grid.Row="2" Margin="0,25,0,10" Height="30" Name="PasswordBox"
-                     PasswordChanged="PasswordBox_PasswordChanged"/>
+                    <Border Margin="0,28,0,0" Padding="22" Background="#172554" CornerRadius="18">
+                        <StackPanel>
+                            <TextBlock Text="https://github.com/gizema3/BayWyn" FontSize="16" FontWeight="SemiBold" Foreground="White"/>
+                            <TextBlock Text="Wiki available"
+                                       Margin="0,12,0,0"
+                                       FontSize="14"
+                                       Foreground="#DBEAFE"/>
+                            
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
 
-        <TextBlock Grid.Row="3" Text="{Binding ErrorMessage}" Foreground="Red" Margin="0,0,0,10"/>
+                <TextBlock Grid.Row="2"
+                           Text="Demo users: Jones / j1234, Kapoor / k1234, Gavin / g1234, Courier / c1234"
+                           Foreground="#64748B"
+                           FontSize="12"
+                           TextWrapping="Wrap"/>
+            </Grid>
+        </Border>
+<!--Login Feature-->
+        <Grid Grid.Column="1" Background="#F8FAFC">
+            <Border Width="420"
+                    Padding="34"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource CardBorderStyle}">
+                <StackPanel>
+                    <TextBlock Text="Welcome back" Style="{StaticResource PageTitleText}" FontSize="30"/>
+                    
 
-        <Button Grid.Row="4" Content="Login" Width="100" Height="35"
-                HorizontalAlignment="Left" Command="{Binding LoginCommand}"/>
+                    <StackPanel Margin="0,30,0,0">
+                        <TextBlock Text="Username" Style="{StaticResource LabelTextStyle}"/>
+                        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,18,0,0">
+                        <TextBlock Text="Password" Style="{StaticResource LabelTextStyle}"/>
+                        <PasswordBox Name="PasswordBox" PasswordChanged="PasswordBox_PasswordChanged"/>
+                    </StackPanel>
+
+                    <Border Margin="0,18,0,0"
+                            Padding="12"
+                            Background="#FEF2F2"
+                            BorderBrush="#FECACA"
+                            BorderThickness="1"
+                            CornerRadius="10">
+                        <TextBlock Text="{Binding ErrorMessage}"
+                                   Foreground="{StaticResource DangerBrush}"
+                                   TextWrapping="Wrap"/>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ErrorMessage}" Value="">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+
+                    <Button Content="Sign In"
+                            Margin="0,24,0,0"
+                            Style="{StaticResource PrimaryButton}"
+                            Command="{Binding LoginCommand}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </Window>

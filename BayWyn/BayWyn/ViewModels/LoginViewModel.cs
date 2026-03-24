@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using BayWyn.Commands;
 using BayWyn.Services;
@@ -8,35 +9,69 @@ namespace BayWyn.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        public string Username { get; set; } = string.Empty; //Updates the property on user input.
-        public string Password { get; set; } = string.Empty;
-        public string ErrorMessage { get; set; } = string.Empty;
+        private string _username = string.Empty; //variable set up
+        private string _password = string.Empty;
+        private string _errorMessage = string.Empty;
 
-        public ICommand LoginCommand { get; } //Setting up logincommand to make Login() work from relaycommand.
+        public string Username
+        {
+            get => _username;
+            set
+            {
+                _username = value;
+                OnPropertyChanged();// Updates UI
+            }
+        }
+
+        public string Password
+        {
+            get => _password;
+            set
+            {
+                _password = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set
+            {
+                _errorMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand LoginCommand { get; } //Button set up
 
         public LoginViewModel()
         {
-            LoginCommand = new RelayCommand(_ => Login()); //Calls login method.
+            LoginCommand = new RelayCommand(_ => Login()); //Login command calls login method.
         }
 
         private void Login()
         {
-            if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password)) //Validation for null.
+            ErrorMessage = string.Empty; //Erase previous error message.
+
+            if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password)) //If username or password is empty gives error message.
             {
-                ErrorMessage = "Please enter username and password."; //If user input is null gives error message.
+                ErrorMessage = "Please enter username and password.";
                 return;
             }
 
-            if (AuthService.Login(Username, Password)) //If user input has been declared in AuthService, MainWindow opens up.
+            if (AuthService.Login(Username, Password)) //Authorise login
             {
-                new MainWindow().Show();
+                var mainWindow = new MainWindow(); //On successful login mainwindow opens up.
+                Application.Current.MainWindow = mainWindow;
+                mainWindow.Show();
 
-                var loginWindow = Application.Current.Windows.OfType<LoginView>().FirstOrDefault(); //Closing the login page once user logged in.
-                loginWindow?.Close();
+                var loginWindow = Application.Current.Windows.OfType<LoginView>().FirstOrDefault();
+                loginWindow?.Close(); //Closes loginwindow
             }
             else
             {
-                ErrorMessage = "Invalid username or password."; //Setting up error message for invalid input.
+                ErrorMessage = "Invalid username or password."; //Failed login error message.
             }
         }
     }

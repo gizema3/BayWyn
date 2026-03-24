@@ -13,9 +13,11 @@ namespace BayWyn.Views
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is LoginViewModel vm)
-                vm.Password = ((PasswordBox)sender).Password;
+        { //Password validation
+            if (DataContext is LoginViewModel vm && sender is PasswordBox passwordBox)
+            {
+                vm.Password = passwordBox.Password;
+            }
         }
     }
 }

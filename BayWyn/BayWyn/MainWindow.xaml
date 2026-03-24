@@ -3,7 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:BayWyn.Views"
         xmlns:vm="clr-namespace:BayWyn.ViewModels"
-        Title="BayWyn Couriers" Height="650" Width="1100" WindowStartupLocation="CenterScreen">
+        Title="BayWyn Couriers"
+        Height="760"
+        Width="1280"
+        MinHeight="700"
+        MinWidth="1100"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
 
@@ -21,30 +26,113 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid Margin="15">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock Text="{Binding WelcomeText}" FontSize="24" FontWeight="Bold" Margin="0,0,0,15"/>
+        <Border Grid.Column="0" Background="{StaticResource SidebarBrush}">
+            <Grid Margin="22">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,20">
-            <Button Content="Customer Contracts" Width="160" Height="38" Margin="0,0,10,0"
-                    Visibility="{Binding CanViewContracts, Converter={StaticResource BoolToVisibilityConverter}}"
-                    Click="Contracts_Click"/>
-            <Button Content="Courier Jobs" Width="160" Height="38" Margin="0,0,10,0"
-                    Visibility="{Binding CanViewJobs, Converter={StaticResource BoolToVisibilityConverter}}"
-                    Click="Jobs_Click"/>
-            <Button Content="My Assignments" Width="160" Height="38" Margin="0,0,10,0"
-                    Visibility="{Binding CanViewAssignments, Converter={StaticResource BoolToVisibilityConverter}}"
-                    Click="Assignments_Click"/>
-            <Button Content="Reports" Width="160" Height="38"
-                    Visibility="{Binding CanViewReports, Converter={StaticResource BoolToVisibilityConverter}}"
-                    Click="Reports_Click"/>
-        </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="BayWyn" FontSize="30" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="Courier Management System"
+                               Margin="0,6,0,0"
+                               FontSize="13"
+                               Foreground="#94A3B8"/>
+                </StackPanel>
 
-        <ContentControl Grid.Row="2" Content="{Binding CurrentView}"/>
+                <Border Grid.Row="1"
+                        Margin="0,28,0,26"
+                        Padding="16"
+                        Background="#172554"
+                        CornerRadius="16">
+                    <StackPanel>
+                        <TextBlock Text="{Binding WelcomeText}"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="White"
+                                   TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding RoleText}"
+                                   Margin="0,6,0,0"
+                                   FontSize="13"
+                                   Foreground="#BFDBFE"/>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Grid.Row="2">
+                    <TextBlock Text="Navigation"
+                               Margin="8,0,0,10"
+                               FontSize="12"
+                               Foreground="#64748B"/>
+
+                    <Button Content="Customer Contracts"
+                            Style="{StaticResource NavButton}"
+                            Margin="0,0,0,10"
+                            Visibility="{Binding CanViewContracts, Converter={StaticResource BoolToVisibilityConverter}}"
+                            Click="Contracts_Click"/>
+                    <Button Content="Courier Jobs"
+                            Style="{StaticResource NavButton}"
+                            Margin="0,0,0,10"
+                            Visibility="{Binding CanViewJobs, Converter={StaticResource BoolToVisibilityConverter}}"
+                            Click="Jobs_Click"/>
+                    <Button Content="My Assignments"
+                            Style="{StaticResource NavButton}"
+                            Margin="0,0,0,10"
+                            Visibility="{Binding CanViewAssignments, Converter={StaticResource BoolToVisibilityConverter}}"
+                            Click="Assignments_Click"/>
+                    <Button Content="Reports"
+                            Style="{StaticResource NavButton}"
+                            Visibility="{Binding CanViewReports, Converter={StaticResource BoolToVisibilityConverter}}"
+                            Click="Reports_Click"/>
+                </StackPanel>
+
+                <Border Grid.Row="3"
+                        Padding="16"
+                        Background="#111C36"
+                        CornerRadius="14">
+                   
+                </Border>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="26">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Style="{StaticResource CardBorderStyle}" Padding="24" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <TextBlock Text="{Binding CurrentSectionTitle}" Style="{StaticResource PageTitleText}"/>
+                        
+                    </StackPanel>
+
+                    <Border Grid.Column="1"
+                            Padding="14,8"
+                            Background="#EEF4FF"
+                            CornerRadius="999">
+                        
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1" Style="{StaticResource CardBorderStyle}" Padding="0">
+                <ContentControl Content="{Binding CurrentView}"/>
+            </Border>
+        </Grid>
     </Grid>
 </Window>
