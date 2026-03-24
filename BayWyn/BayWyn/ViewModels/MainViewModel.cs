@@ -1,20 +1,17 @@
 ﻿using BayWyn.Services;
-using BayWyn.ViewModels;
-
 
 namespace BayWyn.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private object _currentView;
-
-        public object CurrentView
+        private object? _currentView;
+        public object? CurrentView
         {
             get => _currentView;
             set { _currentView = value; OnPropertyChanged(); }
         }
 
-        public string WelcomeText => $"Welcome {AuthService.CurrentUser?.Username} - Role: {AuthService.CurrentUser?.Role}";
+        public string WelcomeText => $"Welcome {AuthService.CurrentUser?.Username ?? ""} - Role: {AuthService.CurrentUser?.Role ?? ""}";
 
         public bool CanViewContracts => AuthService.CurrentUser?.Role == "OM" || AuthService.CurrentUser?.Role == "A";
         public bool CanViewJobs => AuthService.CurrentUser?.Role == "OM" || AuthService.CurrentUser?.Role == "LC";
@@ -23,7 +20,6 @@ namespace BayWyn.ViewModels
 
         public MainViewModel()
         {
-            
             if (CanViewContracts)
                 CurrentView = new CustomerContractsViewModel();
             else if (CanViewJobs)

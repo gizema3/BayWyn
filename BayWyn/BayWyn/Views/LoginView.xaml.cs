@@ -1,6 +1,6 @@
-﻿using BayWyn.ViewModels;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using BayWyn.ViewModels;
 
 namespace BayWyn.Views
 {
@@ -15,7 +15,7 @@ namespace BayWyn.Views
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (DataContext is LoginViewModel vm)
-                vm.Password = PasswordBox.Password;
+                vm.Password = ((PasswordBox)sender).Password;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace BayWyn.ViewModels
     public class ReportsViewModel : BaseViewModel
     {
         public ObservableCollection<CourierJob> ReportJobs { get; } = new ObservableCollection<CourierJob>();
-        private string _summary;
+        private string _summary = string.Empty;
         public string Summary { get => _summary; set { _summary = value; OnPropertyChanged(); } }
 
         public ICommand TodayCourierReportCommand { get; }

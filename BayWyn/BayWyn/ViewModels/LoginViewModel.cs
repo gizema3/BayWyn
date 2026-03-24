@@ -1,34 +1,16 @@
-﻿using BayWyn;
+﻿using System.Windows;
+using System.Windows.Input;
 using BayWyn.Commands;
 using BayWyn.Services;
-using System.Windows;
-using System.Windows.Input;
+using BayWyn.Views;
 
 namespace BayWyn.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        private string _username;
-        private string _password;
-        private string _errorMessage;
-
-        public string Username
-        {
-            get => _username;
-            set { _username = value; OnPropertyChanged(); }
-        }
-
-        public string Password
-        {
-            get => _password;
-            set { _password = value; OnPropertyChanged(); }
-        }
-
-        public string ErrorMessage
-        {
-            get => _errorMessage;
-            set { _errorMessage = value; OnPropertyChanged(); }
-        }
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string ErrorMessage { get; set; } = string.Empty;
 
         public ICommand LoginCommand { get; }
 
@@ -47,13 +29,9 @@ namespace BayWyn.ViewModels
 
             if (AuthService.Login(Username, Password))
             {
-                var mainWindow = new MainWindow();
-                mainWindow.Show();
+                new MainWindow().Show();
 
-                // Login penceresini kapat
-                var loginWindow = Application.Current.Windows
-                    .OfType<Views.LoginView>()
-                    .FirstOrDefault();
+                var loginWindow = Application.Current.Windows.OfType<LoginView>().FirstOrDefault();
                 loginWindow?.Close();
             }
             else

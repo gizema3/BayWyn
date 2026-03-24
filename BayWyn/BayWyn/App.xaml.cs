@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
-using BayWyn.View;
+using BayWyn.Views;
 using System;
 using System.Collections.Generic;
 

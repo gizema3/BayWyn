@@ -1,6 +1,5 @@
-﻿using BayWyn.Models;
-using BayWyn.Services;
-using System.Linq;
+﻿using System.Linq;
+using BayWyn.Models;
 
 namespace BayWyn.Services
 {
@@ -10,18 +9,13 @@ namespace BayWyn.Services
 
         public static bool Login(string username, string password)
         {
-            var user = DataService.Users.FirstOrDefault(u =>
-                u.Username == username && u.Password == password);
-
+            var user = DataService.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
             if (user == null) return false;
 
             CurrentUser = user;
             return true;
         }
 
-        public static void Logout()
-        {
-            CurrentUser = null;
-        }
+        public static void Logout() => CurrentUser = null;
     }
 }

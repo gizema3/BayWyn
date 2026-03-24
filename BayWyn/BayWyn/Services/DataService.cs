@@ -1,6 +1,6 @@
-﻿using BayWyn.Models;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
+using BayWyn.Models;
 
 namespace BayWyn.Services
 {
@@ -29,28 +29,8 @@ namespace BayWyn.Services
 
         public static ObservableCollection<CourierJob> Jobs { get; } = new ObservableCollection<CourierJob>
         {
-            new CourierJob
-            {
-                JobId = 1,
-                ClientName = "ABC Foods",
-                IsContractClient = true,
-                DeliveryDate = DateTime.Today,
-                DeliveryTime = "10:00",
-                CourierName = "courier",
-                Price = 2.50m,
-                Status = "Pending"
-            },
-            new CourierJob
-            {
-                JobId = 2,
-                ClientName = "Walk-in Client",
-                IsContractClient = false,
-                DeliveryDate = DateTime.Today,
-                DeliveryTime = "11:15",
-                CourierName = "John",
-                Price = 10m,
-                Status = "Pending"
-            }
+            new CourierJob { JobId = 1, ClientName = "ABC Foods", IsContractClient = true, DeliveryDate = DateTime.Today, DeliveryTime = "10:00", CourierName = "courier", Price = 2.50m, Status = "Pending" },
+            new CourierJob { JobId = 2, ClientName = "Walk-in Client", IsContractClient = false, DeliveryDate = DateTime.Today, DeliveryTime = "11:15", CourierName = "John", Price = 10m, Status = "Pending" }
         };
     }
 }
