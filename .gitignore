@@ -1,3 +1,9 @@
+.vs/
+bin/
+obj/
+*.user
+*.suo
+
 *.v2
 /BayWyn/.vs/BayWyn.slnx/FileContentIndex
 BayWyn/.vs/BayWyn.slnx/v18/.suo
