@@ -8,10 +8,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel>
-            <TextBlock Text="Reports" Style="{StaticResource SectionTitleText}" FontSize="24"/>
-           
-        </StackPanel>
+        
 
         <Border Grid.Row="1" Style="{StaticResource CardBorderStyle}" Margin="0,20,0,16">
             <WrapPanel> <!--Generate report-->

@@ -121,12 +121,7 @@
                         
                     </StackPanel>
 
-                    <Border Grid.Column="1"
-                            Padding="14,8"
-                            Background="#EEF4FF"
-                            CornerRadius="999">
-                        
-                    </Border>
+                    
                 </Grid>
             </Border>
 
