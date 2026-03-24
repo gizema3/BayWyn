@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BayWyn")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7db0014ac3e9217d8a33526372b30cad9f7261c8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a8fffa87af15174a50f10dea4476688115330dbb")]
 [assembly: System.Reflection.AssemblyProductAttribute("BayWyn")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BayWyn")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
